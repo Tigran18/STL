@@ -1,0 +1,6 @@
+This text file shows what methods does my single linked list container include
+
+clear()-clears data inside a list
+delete_at(const std::size_t k)-deletes a certain node
+get_size()-returns the size of the list
+insert_back(T value)-inserts a value at the end of the list

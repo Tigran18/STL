@@ -6,11 +6,7 @@ namespace my{
         public:
         struct node{
             T data;
-
             node* next;
-
-            node():data(0), next(nullptr){}
-
             node(T value): data(std::move(value)), next(nullptr){}
         };
 
@@ -19,74 +15,49 @@ namespace my{
             node* current;
             public:
             iterator(node* temp): current(temp){}
-
-            iterator& operator++(){
-                if(current){
-                    current=current->next;
-                }
-                return *this;
-            }
-            
-            bool operator!=(const iterator& other){
-                return current!=other.current;
-            }
-
-            T& operator*(){
-                if(!current){
-                    throw std::out_of_range("Out of range");
-                }
-                return current->data;
-            }
+            iterator& operator++();
+            bool operator!=(const iterator& other);
+            T& operator*();
         };
 
-        iterator begin(){
-            return iterator(head);
-        };
+        iterator begin();
+        iterator end();
 
-        iterator end(){
-            return iterator(nullptr);
-        };
+        const iterator begin() const;
 
-        single_list():head(nullptr), size(0){};
+        const iterator end() const;
 
-        single_list(T value): head(value), size(0){}
+        single_list():head(nullptr), size(0){}
 
-        single_list(std::initializer_list<T> init):head(nullptr), size(0){
-            for(const T& value:init){
-                insert_back(value);
+        single_list(T value): head(new node(value)), size(1) {}
+
+        single_list(std::initializer_list<T> init);
+
+        single_list(const single_list& other) : head(nullptr), size(0) {
+            for(auto it=other.begin(); it!=other.end(); ++it){
+                insert_back(*it);
             }
         }
-
-        ~single_list(){
-            node* temp=head;
-            while(temp->next){
-                node* next=temp->next;
-                delete temp;
-                temp=next;
-            }
-
+        
+        single_list(single_list&& other) noexcept: head(other.head), size(other.size){
+            other.head=nullptr;
+            other.size=0;
         }
+        
+        ~single_list();
 
-        std::size_t get_size(){
-            return size;
-        }
+        void clear();
 
-        void insert_back(T value){
-            node* new_node=new node(value);
-            if(!head){
-                head=new_node;
-            }
-            else{
-                node* temp=head;
-                while(temp->next){
-                    temp=temp->next;
-                }
-                temp->next=new_node;
-            }
-            size++;
-        }
+        void delete_at(const std::size_t k);
+
+        std::size_t get_size() const { return size; }
+
+        void insert_back(T value);
+
         private:
         node* head;
         std::size_t size;
     };
 }
+
+#include "list.tpp"
