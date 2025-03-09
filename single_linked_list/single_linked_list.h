@@ -29,7 +29,7 @@ namespace my{
 
         const iterator end() const;
 
-        single_linked_list():head(nullptr), size(0){}
+        single_linked_list();
 
         single_linked_list(T value);
 

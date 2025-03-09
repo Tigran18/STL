@@ -180,3 +180,6 @@ single_linked_list<T>::node::node(T value): data(std::move(value)), next(nullptr
 
 template <typename T>
 single_linked_list<T>::single_linked_list(T value): head(new node(value)), size(1) {}
+
+template <typename T>
+single_linked_list<T>::single_linked_list():head(nullptr), size(0){}
