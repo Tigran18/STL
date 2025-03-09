@@ -109,6 +109,9 @@ T& single_linked_list<T>::operator[](const std::size_t k) {
     if(k<0 ||k>size){
         throw std::out_of_range("Out of range");
     }
+    if(k==0){
+        return head->data;
+    }
     node* temp=head;
     for(std::size_t i=0; i<k; i++){
         temp=temp->next;

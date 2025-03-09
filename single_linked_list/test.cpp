@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <chrono>
 #include "single_linked_list.h"
 
 int main(){
@@ -39,22 +40,36 @@ int main(){
     for(auto it=integer_list.begin(); it!=integer_list.end(); ++it){
         std::cout<<*it<<"  ";
     }
+
+    auto start_for_0=std::chrono::high_resolution_clock::now();
     try{
-        std::cout<<new_integer_list[1]<<std::endl;
+        std::cout<<"new_integer_list element at index 0 is: "<<new_integer_list[0]<<std::endl;
+    }
+    catch(const std::exception& ex){
+        std::cout<<ex.what()<<std::endl;
+    }
+    auto end_for_0=std::chrono::high_resolution_clock::now();
+    auto duration_for_0=std::chrono::duration_cast<std::chrono::nanoseconds>(end_for_0-start_for_0).count();
+    std::cout<<"Duration for 0 index is: "<<duration_for_0<<std::endl;
+    auto start_for_2=std::chrono::high_resolution_clock::now();
+    try{
+        std::cout<<"new_integer_list element at index 2 is: "<<new_integer_list[2]<<std::endl;
+    }
+    catch(const std::exception& ex){
+        std::cout<<ex.what()<<std::endl;
+    }
+    auto end_for_2=std::chrono::high_resolution_clock::now();
+    auto duration_for_2=std::chrono::duration_cast<std::chrono::nanoseconds>(end_for_2-start_for_2).count();
+    std::cout<<"Duration for 2 index is: "<<duration_for_2<<std::endl;
+    try{
+        std::cout<<"new_integer_list element at index less than 0: "<<new_integer_list[-1]<<std::endl;
     }
     catch(const std::exception& ex){
         std::cout<<ex.what()<<std::endl;
     }
 
     try{
-        std::cout<<new_integer_list[-1]<<std::endl;
-    }
-    catch(const std::exception& ex){
-        std::cout<<ex.what()<<std::endl;
-    }
-
-    try{
-        std::cout<<new_integer_list[5]<<std::endl;
+        std::cout<<"new_integer_list element at index more than size: "<<new_integer_list[5]<<std::endl;
     }
     catch(const std::exception& ex){
         std::cout<<ex.what()<<std::endl;
