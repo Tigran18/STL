@@ -11,7 +11,7 @@ namespace my{
         };
         node* head;
         std::size_t size;
-        
+
         public:
         class iterator{
             private:
