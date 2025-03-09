@@ -3,13 +3,14 @@
 namespace my{
     template <typename T>
     class single_linked_list{
-        public:
+        private:
         struct node{
             T data;
             node* next;
             node(T value);
         };
 
+        public:
         class iterator{
             private:
             node* current;
