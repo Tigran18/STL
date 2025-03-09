@@ -20,7 +20,7 @@ int main(){
         }
         std::cout<<"\n";
     }
-    my::single_linked_list<std::vector<double>> copy_vec=vec_double_list;
+    my::single_linked_list<std::vector<double>> copy_vec(vec_double_list);
     std::cout<<"\nChecking the work of copy constructor: \n";
     std::cout<<"The elements of the vec_double_list are: "<<std::endl;
     for(auto it=copy_vec.begin(); it!=copy_vec.end(); ++it){
