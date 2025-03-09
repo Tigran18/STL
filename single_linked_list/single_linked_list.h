@@ -2,7 +2,7 @@
 
 namespace my{
     template <typename T>
-    class single_list{
+    class single_linked_list{
         public:
         struct node{
             T data;
@@ -27,24 +27,24 @@ namespace my{
 
         const iterator end() const;
 
-        single_list():head(nullptr), size(0){}
+        single_linked_list():head(nullptr), size(0){}
 
-        single_list(T value): head(new node(value)), size(1) {}
+        single_linked_list(T value): head(new node(value)), size(1) {}
 
-        single_list(std::initializer_list<T> init);
+        single_linked_list(std::initializer_list<T> init);
 
-        single_list(const single_list& other) : head(nullptr), size(0) {
+        single_linked_list(const single_linked_list& other) : head(nullptr), size(0) {
             for(auto it=other.begin(); it!=other.end(); ++it){
                 insert_back(*it);
             }
         }
         
-        single_list(single_list&& other) noexcept: head(other.head), size(other.size){
+        single_linked_list(single_linked_list&& other) noexcept: head(other.head), size(other.size){
             other.head=nullptr;
             other.size=0;
         }
         
-        ~single_list();
+        ~single_linked_list();
 
         void clear();
 
@@ -54,10 +54,12 @@ namespace my{
 
         void insert_back(T value);
 
+        T& operator[](const std::size_t k);
+
         private:
         node* head;
         std::size_t size;
     };
 }
 
-#include "list.tpp"
+#include "single_linked_list.tpp"

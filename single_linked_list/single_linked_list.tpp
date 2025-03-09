@@ -1,9 +1,9 @@
-#include "list.h"
+#include "single_linked_list.h"
 
 using namespace my;
 
 template <typename T>
-typename single_list<T>::iterator& single_list<T>::iterator::operator++(){
+typename single_linked_list<T>::iterator& single_linked_list<T>::iterator::operator++(){
     if(current){
         current=current->next;
     }
@@ -11,12 +11,12 @@ typename single_list<T>::iterator& single_list<T>::iterator::operator++(){
 }
 
 template <typename T>
-bool single_list<T>::iterator::operator!=(const iterator& other){
+bool single_linked_list<T>::iterator::operator!=(const iterator& other){
     return current!=other.current;
 }
 
 template <typename T>
-T& single_list<T>::iterator::operator*(){
+T& single_linked_list<T>::iterator::operator*(){
     if(!current){
         throw std::out_of_range("Out of range");
     }
@@ -24,34 +24,34 @@ T& single_list<T>::iterator::operator*(){
 }
 
 template <typename T>
-typename single_list<T>::iterator single_list<T>::begin(){ 
+typename single_linked_list<T>::iterator single_linked_list<T>::begin(){ 
     return iterator(head); 
 }
 
 template <typename T>
-typename single_list<T>::iterator single_list<T>::end(){ 
+typename single_linked_list<T>::iterator single_linked_list<T>::end(){ 
     return iterator(nullptr); 
 }
 
 template <typename T>
-const typename single_list<T>::iterator single_list<T>::begin() const{
+const typename single_linked_list<T>::iterator single_linked_list<T>::begin() const{
     return iterator(head);
 }
 
 template <typename T>
-const typename single_list<T>::iterator single_list<T>::end() const{
+const typename single_linked_list<T>::iterator single_linked_list<T>::end() const{
     return iterator(nullptr);
 }
 
 template <typename T>
-single_list<T>::single_list(std::initializer_list<T> init):head(nullptr), size(0){
+single_linked_list<T>::single_linked_list(std::initializer_list<T> init):head(nullptr), size(0){
     for(const T& value:init){
         insert_back(value);
     }
 }
 
 template <typename T>
-void single_list<T>::clear() {
+void single_linked_list<T>::clear() {
     while (head) {
         node* temp = head;
         head = head->next;
@@ -62,13 +62,15 @@ void single_list<T>::clear() {
 }
 
 template <typename T>
-single_list<T>::~single_list(){
+single_linked_list<T>::~single_linked_list(){
     clear();
 }
 
 template <typename T>
-void single_list<T>::delete_at(const std::size_t k){
-    if (!head || k >= size) return;
+void single_linked_list<T>::delete_at(const std::size_t k){
+    if (!head || k >= size){
+        throw std::out_of_range("Out of range");
+    }
     if (k == 0) {
         node* temp = head;
         head = head->next;
@@ -88,7 +90,7 @@ void single_list<T>::delete_at(const std::size_t k){
 }
 
 template <typename T>
-void single_list<T>::insert_back(T value) {
+void single_linked_list<T>::insert_back(T value) {
     node* new_node = new node(value);
     if (!head) {
         head = new_node;
@@ -100,4 +102,16 @@ void single_list<T>::insert_back(T value) {
         temp->next = new_node;
     }
     size++;
+}
+
+template <typename T>
+T& single_linked_list<T>::operator[](const std::size_t k) {
+    if(k<0 ||k>size){
+        throw std::out_of_range("Out of range");
+    }
+    node* temp=head;
+    for(std::size_t i=0; i<k; i++){
+        temp=temp->next;
+    }
+    return temp->data;
 }
