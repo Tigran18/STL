@@ -9,7 +9,9 @@ namespace my{
             node* next;
             node(T value);
         };
-
+        node* head;
+        std::size_t size;
+        
         public:
         class iterator{
             private:
@@ -53,10 +55,6 @@ namespace my{
         T& operator[](const std::size_t k);
 
         void insert_at(const iterator arg, T value);
- 
-        private:
-        node* head;
-        std::size_t size;
     };
 }
 
