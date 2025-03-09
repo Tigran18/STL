@@ -4,6 +4,7 @@
 #include "single_linked_list.h"
 
 int main(){
+    my::single_linked_list<float> float_list={4.5f};
     my::single_linked_list<int> integer_list{4, 7, 9, -2};
     integer_list.delete_at(0);
     std::cout<<"The elements of the integer_list are: "<<std::endl;
@@ -40,7 +41,6 @@ int main(){
     for(auto it=integer_list.begin(); it!=integer_list.end(); ++it){
         std::cout<<*it<<"  ";
     }
-
     auto start_for_0=std::chrono::high_resolution_clock::now();
     try{
         std::cout<<"new_integer_list element at index 0 is: "<<new_integer_list[0]<<std::endl;
@@ -73,6 +73,12 @@ int main(){
     }
     catch(const std::exception& ex){
         std::cout<<ex.what()<<std::endl;
+    }
+
+    std::cout<<"new_integer_list after inserting 5 at index 2 is: "<<std::endl;
+    new_integer_list.insert_at(new_integer_list.begin()+2, 5);
+    for(auto it=new_integer_list.begin(); it!=new_integer_list.end(); ++it){
+        std::cout<<*it<<"  ";
     }
 
     std::cout<<std::endl;
