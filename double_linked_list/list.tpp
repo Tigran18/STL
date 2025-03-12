@@ -129,3 +129,6 @@ template <typename T>
 list<T>::reverse_iterator list<T>::rend()const{
     return reverse_iterator(nullptr);
 }
+
+// template <typename T>
+// list<T>& list<T>::operator[](const std::size_t k)const
