@@ -23,9 +23,10 @@ namespace my{
 
         std::size_t size()const;
 
-        list(const list& other){
-            head=other.head;
-            size_l=other.size_l;
+        list(const list& other):head(nullptr), tail(nullptr), size_l(0){
+            for(auto it=other.begin(); it!=other.end(); ++it){
+                insert_back(*it);
+            }
         }
 
         class iterator{
