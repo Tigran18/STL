@@ -6,47 +6,47 @@ template <typename T>
 double_linked_list<T>::node::node(T value):data(std::move(value)), next(nullptr), prev(nullptr){}
 
 template <typename T>
-double_linked_list<T>::iterator::iterator(node* temp):current(node){}
+double_linked_list<T>::iterator::iterator(node* temp):current(temp){}
 
 template <typename T>
-double_linked_list<T>::iterator::begin(){
+double_linked_list<T>::iterator double_linked_list<T>::begin(){
     return iterator(head);
 }
 
 template <typename T>
-double_linked_list<T>::iterator::begin()const{
+double_linked_list<T>::iterator double_linked_list<T>::begin()const{
     return iterator(head);
 }
 
 
 template <typename T>
-double_linked_list<T>::iterator::end(){
+double_linked_list<T>::iterator double_linked_list<T>::end(){
+    return iterator(nullptr);
+}
+
+template <typename T>
+double_linked_list<T>::iterator double_linked_list<T>::end()const{
+    return iterator(nullptr);
+}
+
+
+template <typename T>
+double_linked_list<T>::iterator double_linked_list<T>::rbegin(){
     return iterator(tail);
 }
 
 template <typename T>
-double_linked_list<T>::iterator::end()const{
+double_linked_list<T>::iterator double_linked_list<T>::rbegin()const{
     return iterator(tail);
 }
 
 
 template <typename T>
-double_linked_list<T>::iterator::cbegin(){
-    return iterator(tail);
+double_linked_list<T>::iterator double_linked_list<T>::rend(){
+    return iterator(nullptr);
 }
 
 template <typename T>
-double_linked_list<T>::iterator::cbegin()const{
-    return iterator(tail);
-}
-
-
-template <typename T>
-double_linked_list<T>::iterator::cend(){
-    return iterator(head);
-}
-
-template <typename T>
-double_linked_list<T>::iterator::cend()const{
-    return iterator(head);
+double_linked_list<T>::iterator double_linked_list<T>::rend()const{
+    return iterator(nullptr);
 }

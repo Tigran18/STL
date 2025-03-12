@@ -1,18 +1,19 @@
 #pragma once
 
-template <typenae T>
 namespace my{
+template <typename T>
     class double_linked_list{
         private:
+        struct node{
+            T data;
+            node* next;
+            node* prev;
+            node(T value);
+        };
             node* head;
             node* tail;
             std::size_t size;
-            struct node{
-                T data;
-                node* next;
-                node* prev;
-                node(T value);
-            };
+            
         public:
             class iterator{
                 private:
@@ -23,12 +24,12 @@ namespace my{
 
             iterator begin();
             iterator end();
-            iterator cbegin();
-            iterator cend();
+            iterator rbegin();
+            iterator rend();
             iterator begin()const;
             iterator end()const;
-            iterator cbegin()const;
-            iterator cend() const;
+            iterator rbegin()const;
+            iterator rend() const;
 
             double_linked_list():head(nullptr), tail(nullptr), size(0){}
 
@@ -38,26 +39,58 @@ namespace my{
                 }
             }
 
-            void insert_back(T value){
-                node* new_node=new node(T);
-                if(!head){
-                    head=new_node;
-                }
-                else{
-                    node* temp=head;
-                    while(!tail){
-                        node* temp_new=temp=temp;
-                        temp=temp->next;
-                        temp->prev=temp_new;
-                    }
-                    temp->next=new_node;
+            void insert_back(T value) {
+                node* new_node = new node(value);
+                if (!head) {
+                    head = new_node;
+                    tail = new_node;
+                } else {
+                    tail->next = new_node;
+                    new_node->prev = tail;
+                    tail = new_node;
                 }
                 size++;
+            }            
+
+            ~double_linked_list(){
+                clear();
             }
 
-            double_linked_list& operator[](std::size_t k){
-                if()
+            void clear(){
+                while(head){
+                    node* temp=head;
+                    head=head->next;
+                    delete temp;
+                }
+                head=nullptr;
+                size=0;
             }
+
+            T& operator[](std::size_t k) {
+                if (k >= size) {
+                    throw std::out_of_range("Index out of range");
+                }
+                if(k==0){
+                    return head->data;
+                }
+                node* temp = head;
+                while (k--) {
+                    temp = temp->next;
+                }
+                return temp->data;
+            }
+            
+            const T& operator[](std::size_t k) const {
+                if (k >= size) {
+                    throw std::out_of_range("Index out of range");
+                }
+                node* temp = head;
+                while (k--) {
+                    temp = temp->next;
+                }
+                return temp->data;
+            }
+            
     };
 }
 
