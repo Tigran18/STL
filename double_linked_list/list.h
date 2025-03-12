@@ -16,13 +16,9 @@ namespace my{
         public:
 
         list();
-
         list(std::initializer_list<T> init);
-
         void insert_back(const T& value);
-
         ~list();
-
         void clear();
 
         class iterator{
@@ -30,80 +26,34 @@ namespace my{
             node* current;
 
             public:            
-            iterator(node* temp):current(temp){}
-
-            T& operator*(){
-                return current->data; 
-            }
-
-            iterator& operator++(){
-                if(current){
-                    current=current->next;
-                }
-                return *this;
-            }
-
-            bool operator!=(const iterator& other){
-                return current!=other.current;
-            }
+            iterator(node* temp);
+            T& operator*();
+            iterator& operator++();
+            bool operator!=(const iterator& other)const;
         };
+
+
+        iterator begin();
+        iterator end();
+        iterator begin()const;
+        iterator end()const;
+
 
         class reverse_iterator{
             private:
             node* current;
-
             public:
 
-            reverse_iterator(node* temp):current(temp){}
-
-            T& operator*(){
-                return current->data; 
-            }
-
-            reverse_iterator& operator++(){
-                if(current){
-                    current=current->prev;
-                }
-                return *this;
-            }
-
-            bool operator!=(const reverse_iterator& other){
-                return current!=other.current;
-            }
+            reverse_iterator(node* temp);
+            T& operator*();
+            reverse_iterator& operator++();
+            bool operator!=(const reverse_iterator& other)const;
         };
 
-
-        iterator begin(){
-            return iterator(head);
-        }
-
-        iterator end(){
-            return iterator(nullptr);
-        }
-
-        iterator begin()const{
-            return iterator(head);
-        }
-
-        iterator end()const{
-            return iterator(nullptr);
-        }
-
-        reverse_iterator rbegin(){
-            return reverse_iterator(tail);
-        }
-
-        reverse_iterator rend(){
-            return reverse_iterator(nullptr);
-        }
-
-        reverse_iterator rbegin()const{
-            return reverse_iterator(tail);
-        }
-
-        reverse_iterator rend()const{
-            return reverse_iterator(nullptr);
-        }
+        reverse_iterator rbegin();
+        reverse_iterator rend();
+        reverse_iterator rbegin()const;
+        reverse_iterator rend()const;
     };
 }
 

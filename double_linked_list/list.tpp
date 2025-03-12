@@ -38,7 +38,7 @@ list<T>::~list(){
 }
 
 template <typename T>
-list<T>::clear(){
+void list<T>::clear(){
     while(head){
         node* temp=head;
         head=head->next;
@@ -46,4 +46,86 @@ list<T>::clear(){
     }
     head=nullptr;
     size=0;
+}
+
+template <typename T>
+list<T>::iterator::iterator(node* temp):current(temp){}
+
+template <typename T>
+T& list<T>::iterator::operator*(){
+    return current->data; 
+}
+
+template <typename T>
+list<T>::iterator& list<T>::iterator::operator++(){
+    if(current){
+        current=current->next;
+    }
+    return *this;
+}
+
+template <typename T>
+bool list<T>::iterator::operator!=(const iterator& other)const{
+    return current!=other.current;
+}
+
+template <typename T>
+list<T>::reverse_iterator::reverse_iterator(node* temp):current(temp){}
+
+template <typename T>
+T& list<T>::reverse_iterator::operator*(){
+    return current->data; 
+}
+
+template <typename T>
+list<T>::reverse_iterator& list<T>::reverse_iterator::operator++(){
+    if(current){
+        current=current->prev;
+    }
+    return *this;
+}
+
+template <typename T>
+bool list<T>::reverse_iterator::operator!=(const reverse_iterator& other)const{
+    return current!=other.current;
+}
+
+template <typename T>
+list<T>::iterator list<T>::begin(){
+    return iterator(head);
+}
+
+template <typename T>
+list<T>::iterator list<T>::end(){
+    return iterator(nullptr);
+}
+
+template <typename T>
+list<T>::iterator list<T>::begin()const{
+    return iterator(head);
+}
+
+template <typename T>
+list<T>::iterator list<T>::end()const{
+    return iterator(nullptr);
+}
+
+template <typename T>
+list<T>::reverse_iterator list<T>::rbegin(){
+    return reverse_iterator(tail);
+}
+
+template <typename T>
+list<T>::reverse_iterator list<T>::rend(){
+    return reverse_iterator(nullptr);
+}
+
+template <typename T>
+list<T>::reverse_iterator list<T>::rbegin()const{
+    return reverse_iterator(tail);
+}
+
+template <typename T>
+list<T>::reverse_iterator list<T>::rend()const{
+    return reverse_iterator(nullptr);
 }
