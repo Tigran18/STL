@@ -57,13 +57,11 @@ namespace my{
             if(k>=size){
                 throw std::out_of_range("Out of range.");
             }
-            std::size_t i=k;
-            for(auto it=begin(); it!=end(); ++it){
-                if(i==0){
-                    return *it;
-                }
-                i--;
+            auto it=begin();
+            for(std::size_t i=0; i<k; i++){
+                ++it;
             }
+            return *it;
         }
     };
 }
