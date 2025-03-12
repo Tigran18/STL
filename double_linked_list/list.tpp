@@ -6,12 +6,12 @@ template <typename T>
 list<T>::node::node(T value):data(std::move(value)), next(nullptr), prev(nullptr){}
 
 template <typename T>
-list<T>::list():head(nullptr), tail(nullptr), size(0){
+list<T>::list():head(nullptr), tail(nullptr), size_l(0){
 
 }
 
 template <typename T>
-list<T>::list(std::initializer_list<T> init):head(nullptr), tail(nullptr), size(0){
+list<T>::list(std::initializer_list<T> init):head(nullptr), tail(nullptr), size_l(0){
     for(const auto& el : init){
         insert_back(el);
     }
@@ -29,7 +29,7 @@ void list<T>::insert_back(const T& value){
         new_node->prev=tail;
         tail=new_node;
     }
-    size++;
+    size_l++;
 }
 
 template <typename T>
@@ -45,7 +45,7 @@ void list<T>::clear(){
         delete temp;
     }
     head=nullptr;
-    size=0;
+    size_l=0;
 }
 
 template <typename T>
@@ -130,5 +130,19 @@ list<T>::reverse_iterator list<T>::rend()const{
     return reverse_iterator(nullptr);
 }
 
-// template <typename T>
-// list<T>& list<T>::operator[](const std::size_t k)const
+template <typename T>
+T& list<T>::operator[](const std::size_t k)const{
+    if(k>=size_l){
+        throw std::out_of_range("Out of range.");
+    }
+    auto it=begin();
+    for(std::size_t i=0; i<k; i++){
+        ++it;
+    }
+    return *it;
+}
+
+template <typename T>
+std::size_t list<T>::size()const{
+    return size_l;
+}

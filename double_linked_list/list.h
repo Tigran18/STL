@@ -10,7 +10,7 @@ namespace my{
             node* prev;
             node(T value);
         };
-        std::size_t size;
+        std::size_t size_l;
         node* head;
         node* tail;
         public:
@@ -20,6 +20,13 @@ namespace my{
         void insert_back(const T& value);
         ~list();
         void clear();
+
+        std::size_t size()const;
+
+        list(const list& other){
+            head=other.head;
+            size_l=other.size_l;
+        }
 
         class iterator{
             private:
@@ -53,16 +60,7 @@ namespace my{
         reverse_iterator rbegin()const;
         reverse_iterator rend()const;
 
-        T& operator[](const std::size_t k)const{
-            if(k>=size){
-                throw std::out_of_range("Out of range.");
-            }
-            auto it=begin();
-            for(std::size_t i=0; i<k; i++){
-                ++it;
-            }
-            return *it;
-        }
+        T& operator[](const std::size_t k)const;
     };
 }
 
