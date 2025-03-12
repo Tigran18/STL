@@ -51,10 +51,19 @@ int main(){
     catch(const std::exception& ex){
         std::cout<<ex.what()<<std::endl;
     }
-    my::list<int> new_integer_list(integer_list);
+    my::list<int> new_integer_list=integer_list;
     std::cout<<"Testing forward iterator for new_integer_list: "<<std::endl;
     try{
         for(auto it=new_integer_list.begin(); it!=new_integer_list.end(); ++it){
+            std::cout<<*it<<std::endl;
+        }
+    }
+    catch(const std::exception& ex){
+        std::cout<<ex.what()<<std::endl;
+    }
+    std::cout<<"Testing forward iterator for integer_list after moving: "<<std::endl;
+    try{
+        for(auto it=integer_list.begin(); it!=integer_list.end(); ++it){
             std::cout<<*it<<std::endl;
         }
     }

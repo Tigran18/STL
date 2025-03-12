@@ -23,11 +23,9 @@ namespace my{
 
         std::size_t size()const;
 
-        list(const list& other):head(nullptr), tail(nullptr), size_l(0){
-            for(auto it=other.begin(); it!=other.end(); ++it){
-                insert_back(*it);
-            }
-        }
+        list(const list& other);
+
+        list(list&& other)noexcept;
 
         class iterator{
             private:

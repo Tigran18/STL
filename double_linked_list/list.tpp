@@ -146,3 +146,18 @@ template <typename T>
 std::size_t list<T>::size()const{
     return size_l;
 }
+
+template <typename T>
+list<T>::list(const list& other):head(nullptr), tail(nullptr), size_l(0){
+    for(auto it=other.begin(); it!=other.end(); ++it){
+        insert_back(*it);
+    }
+}
+
+
+template <typename T>
+list<T>::list(list&& other)noexcept:head(other.head), tail(other.tail), size_l(other.size_l){
+    other.head=nullptr;
+    other.tail=nullptr;
+    other.size_l=0;
+}
