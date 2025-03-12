@@ -1,10 +1,12 @@
 #include <iostream>
-#include "double_linked_list.h"
+#include <chrono>
+#include "list.h"
 
 int main(){
-    my::double_linked_list<int> integer_list{7, 8, 9, 10};
-    for(std::size_t i=0; i<4; i++){
-        std::cout<<integer_list[i]<<std::endl;
+    std::cout<<"Creating integer list and testing. "<<std::endl;
+    my::list<int> integer_list={7, 8, 9, 10};
+    for(auto it=integer_list.rbegin(); it!=integer_list.rend(); ++it){
+        std::cout<<*it<<std::endl;
     }
     return 0;
 }

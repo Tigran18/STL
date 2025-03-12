@@ -1,4 +1,4 @@
-This text file shows what methods does my single linked list container include
+This text file shows what methods does my forward linked list container provide
 
 clear()-clears data inside a list
 delete_at(const std::size_t k)-deletes a certain node
