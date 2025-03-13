@@ -6,6 +6,7 @@ int main(){
     std::cout<<"Creating integer list and testing. "<<std::endl;
     std::cout<<"Testing forward iterator: "<<std::endl;
     my::list<int> integer_list={7, 8, 9, 10};
+    integer_list.delete_at(0);
     auto start_for_integer1=std::chrono::high_resolution_clock::now();
     try{
         for(auto it=integer_list.begin(); it!=integer_list.end(); ++it){

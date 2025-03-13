@@ -1,0 +1,7 @@
+In this readme file I count the methods which class list provides:
+
+copy constructor
+move constructor
+forward and reverse iterator classes defined in class list for iterating through the elements of a container
+operator[](const std::size_t k) to get the element at an exact index
+clear()-deletes the elements of the container
