@@ -36,6 +36,16 @@ namespace my{
             T& operator*();
             iterator& operator++();
             bool operator!=(const iterator& other)const;
+            iterator operator+(std::size_t k)const{
+                iterator it = *this;
+                while (k-- && it.current) {
+                    ++it;
+                }
+                return it;
+            }
+            bool operator==(const iterator& other)const{
+                return current==other.current;
+            }
         };
 
         iterator begin();
@@ -58,6 +68,25 @@ namespace my{
         reverse_iterator rend();
         reverse_iterator rbegin()const;
         reverse_iterator rend()const;
+
+        void insert_at(const iterator& arg, const T value){
+            node* new_node=new node(value);
+            if(arg==begin()){
+                new_node->next=head->next;
+                head->next->prev=new_node;
+                head=new_node;
+                head->prev=nullptr;
+                size_l++;
+                return;
+            }
+            node* temp=head;
+            for(auto it=begin(); it!=arg; ++it){
+                temp=temp->next;
+            }
+            temp->next->prev=new_node;
+            new_node->prev=temp;
+            size_l++;
+        }
 
         void delete_at(const std::size_t k){
             if(k>=size_l){
