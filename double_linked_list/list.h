@@ -69,24 +69,38 @@ namespace my{
         reverse_iterator rbegin()const;
         reverse_iterator rend()const;
 
-        void insert_at(const iterator& arg, const T value){
-            node* new_node=new node(value);
-            if(arg==begin()){
-                new_node->next=head->next;
-                head->next->prev=new_node;
-                head=new_node;
-                head->prev=nullptr;
+        void insert_at(const iterator& arg, const T value) {
+            node* new_node = new node(value);
+            if (arg == begin()) {
+                new_node->next = head;
+                if (head) {
+                    head->prev = new_node;
+                } else {
+                    tail = new_node; 
+                }
+                head = new_node;
                 size_l++;
                 return;
             }
-            node* temp=head;
-            for(auto it=begin(); it!=arg; ++it){
-                temp=temp->next;
+        
+            node* temp = head;
+            for (auto it = begin(); it != arg; ++it) {
+                temp = temp->next;
             }
-            temp->next->prev=new_node;
-            new_node->prev=temp;
+        
+            new_node->next = temp->next;
+            new_node->prev = temp;  
+        
+            if (temp->next) {
+                temp->next->prev = new_node;
+            } else {
+                tail = new_node;  
+            }
+        
+            temp->next = new_node;
             size_l++;
         }
+        
 
         void delete_at(const std::size_t k){
             if(k>=size_l){
