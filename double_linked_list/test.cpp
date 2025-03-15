@@ -6,8 +6,11 @@ int main(){
     std::cout<<"Creating integer list and testing. "<<std::endl;
     std::cout<<"Testing forward iterator: "<<std::endl;
     my::list<int> integer_list={7, 8, 9, 10};
-    integer_list.delete_at(0);
-    integer_list.insert_at(integer_list.begin(), 5);
+    // for (std::size_t i = 0; i <4; ++i) {
+    //     integer_list.delete_at(i);
+    // }
+
+    integer_list.insert_at(integer_list.begin()+4, 5);
     auto start_for_integer1=std::chrono::high_resolution_clock::now();
     try{
         for(auto it=integer_list.begin(); it!=integer_list.end(); ++it){
@@ -53,24 +56,24 @@ int main(){
     catch(const std::exception& ex){
         std::cout<<ex.what()<<std::endl;
     }
-    my::list<int> new_integer_list=integer_list;
-    std::cout<<"Testing forward iterator for new_integer_list: "<<std::endl;
-    try{
-        for(auto it=new_integer_list.begin(); it!=new_integer_list.end(); ++it){
-            std::cout<<*it<<std::endl;
-        }
-    }
-    catch(const std::exception& ex){
-        std::cout<<ex.what()<<std::endl;
-    }
-    std::cout<<"Testing forward iterator for integer_list after moving: "<<std::endl;
-    try{
-        for(auto it=integer_list.begin(); it!=integer_list.end(); ++it){
-            std::cout<<*it<<std::endl;
-        }
-    }
-    catch(const std::exception& ex){
-        std::cout<<ex.what()<<std::endl;
-    }
+    // my::list<int> new_integer_list=integer_list;
+    // std::cout<<"Testing forward iterator for new_integer_list: "<<std::endl;
+    // try{
+    //     for(auto it=new_integer_list.begin(); it!=new_integer_list.end(); ++it){
+    //         std::cout<<*it<<std::endl;
+    //     }
+    // }
+    // catch(const std::exception& ex){
+    //     std::cout<<ex.what()<<std::endl;
+    // }
+    // std::cout<<"Testing forward iterator for integer_list after moving: "<<std::endl;
+    // try{
+    //     for(auto it=integer_list.begin(); it!=integer_list.end(); ++it){
+    //         std::cout<<*it<<std::endl;
+    //     }
+    // }
+    // catch(const std::exception& ex){
+    //     std::cout<<ex.what()<<std::endl;
+    // }
     return 0;
 }

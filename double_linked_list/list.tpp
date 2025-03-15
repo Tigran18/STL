@@ -161,3 +161,72 @@ list<T>::list(list&& other)noexcept:head(other.head), tail(other.tail), size_l(o
     other.tail=nullptr;
     other.size_l=0;
 }
+
+template <typename T>
+void list<T>::insert_at(const iterator& arg, T value){
+    node* node_to_insert=new node(value);
+    if(arg==begin()){
+        if (head) {
+            node_to_insert->next = head;
+            head->prev = node_to_insert;
+        } else {
+            tail = node_to_insert;
+        }
+        head = node_to_insert;
+        
+    }
+    else if(arg==end()){
+        node_to_insert->prev=tail;
+        tail->next=node_to_insert;
+        tail=node_to_insert;
+    }
+    else{
+        node* temp=head;
+        for(auto it=begin(); it!=arg; ++it){
+            temp=temp->next;
+        }
+        temp=temp->prev;
+        node* node_after_inserted=temp->next;
+        temp->next=node_to_insert;
+        node_to_insert->next=node_after_inserted;
+        node_after_inserted->prev=node_to_insert;
+        node_to_insert->prev=temp;
+    }
+    ++size_l;
+}
+
+template <typename T>
+void list<T>::delete_at(const std::size_t& k){
+    if(k>=size_l){
+        throw std::out_of_range("Out of range.");
+    }
+    if(k==0){
+        node* node_to_delete=head;
+        head=head->next;
+        delete node_to_delete;
+        head->prev=nullptr;
+    }
+    else if(size_l==1){
+        node* node_to_delete=head;
+        delete node_to_delete;
+        head=tail=nullptr;
+    }
+    else if(k==size_l-1){
+        node* node_to_delete=tail;
+        tail=tail->prev;
+        delete node_to_delete;
+        tail->next=nullptr;
+    }
+    else{
+        node* temp=head;
+        for(std::size_t i=0; i<k-1; i++){
+            temp=temp->next;
+        }
+        node* node_to_delete=temp->next;
+        node* node_after_temp=node_to_delete->next;
+        temp->next=node_after_temp;
+        node_after_temp->prev=temp;
+        delete node_to_delete;
+    }
+    --size_l;
+}
