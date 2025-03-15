@@ -5,3 +5,5 @@ move constructor
 forward and reverse iterator classes defined in class list for iterating through the elements of a container
 operator[](const std::size_t k) to get the element at an exact index
 clear()-deletes the elements of the container
+delete_at(const std::size_t k) deletes the element at the index k
+isert_at(iterator, const T value) insert value T at some index
