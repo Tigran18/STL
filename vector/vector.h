@@ -40,7 +40,11 @@ namespace my {
             m_ptr[m_size++] = arg;
         }
 
-        T& operator[](std::size_t k) const {
+        T& operator[](const std::size_t k) const {
+            return m_ptr[k];
+        }
+
+        T& operator[](std::size_t k) {
             return m_ptr[k];
         }
 

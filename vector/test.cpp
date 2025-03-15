@@ -4,7 +4,11 @@
 #include <vector>
 
 int main(){
-    my::vector<int> integer_vec={7, 8, 9, 10};
+    my::vector<int> integer_vec{7, 8, 9, 10};
+    for(std::size_t i=0; i<integer_vec.size(); i++){
+        std::cout<<integer_vec[i]<<std::endl;
+    }
+    integer_vec[2]=5;
     for(std::size_t i=0; i<integer_vec.size(); i++){
         std::cout<<integer_vec[i]<<std::endl;
     }
