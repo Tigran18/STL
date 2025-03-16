@@ -38,6 +38,36 @@ vector<T>::vector(vector&& other) noexcept : m_ptr(other.m_ptr), m_size(other.m_
 }
 
 template <typename T>
+vector<T>& vector<T>::operator=(const vector& other) {
+    if (this != &other) { 
+        delete[] m_ptr;   
+        m_size = other.m_size;
+        m_cap = other.m_cap;
+        m_ptr = new T[m_cap];
+        for (std::size_t i = 0; i < m_size; ++i) {
+            m_ptr[i] = other.m_ptr[i]; 
+        }
+    }
+    return *this;
+}
+
+template <typename T>
+vector<T>& vector<T>::operator=(vector&& other) noexcept {
+    if (this != &other) {  
+        delete[] m_ptr; 
+        m_ptr = other.m_ptr;
+        m_size = other.m_size;
+        m_cap = other.m_cap;
+
+        other.m_ptr = nullptr;
+        other.m_size = 0;
+        other.m_cap = 0;
+    }
+    return *this;
+}
+
+
+template <typename T>
 void vector<T>::clear(){
     delete[] m_ptr;
     m_ptr = nullptr;

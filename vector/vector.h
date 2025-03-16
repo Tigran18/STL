@@ -22,6 +22,10 @@ namespace my {
 
         vector(vector&& other)noexcept;
 
+        vector& operator=(const vector& other);
+
+        vector& operator=(vector&& other)noexcept;
+
         ~vector();
 
         void clear();
