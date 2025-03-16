@@ -8,9 +8,9 @@ int main(){
     for(std::size_t i=0; i<integer_vec.size(); i++){
         std::cout<<integer_vec[i]<<std::endl;
     }
-    integer_vec[2]=5;
-    for(std::size_t i=0; i<integer_vec.size(); i++){
-        std::cout<<integer_vec[i]<<std::endl;
+    my::vector<int> new_vector(integer_vec);
+    for(std::size_t i=0; i<new_vector.size(); i++){
+        std::cout<<new_vector[i]<<std::endl;
     }
     std::cout<<integer_vec.capacity()<<std::endl;
     return 0;
