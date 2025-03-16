@@ -20,6 +20,8 @@ namespace my {
 
         vector(const vector& other);
 
+        vector(vector&& other)noexcept;
+
         ~vector();
 
         void clear();

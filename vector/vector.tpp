@@ -24,8 +24,25 @@ vector<T>::vector(std::initializer_list<T> args) : vector() {
 }
 
 template <typename T>
+vector<T>::vector(const vector& other) : m_ptr(new T[other.m_cap]), m_size(other.m_size), m_cap(other.m_cap) {
+    for (std::size_t i = 0; i < m_size; ++i) {
+        m_ptr[i] = other.m_ptr[i];
+    }
+}
+
+template <typename T>
+vector<T>::vector(vector&& other) noexcept : m_ptr(other.m_ptr), m_size(other.m_size), m_cap(other.m_cap) {
+    other.m_ptr = nullptr;
+    other.m_size = 0;
+    other.m_cap = 0;
+}
+
+template <typename T>
 void vector<T>::clear(){
     delete[] m_ptr;
+    m_ptr = nullptr;
+    m_size = 0;
+    m_cap = 0;
 }
 
 template <typename T>
@@ -59,11 +76,4 @@ std::size_t vector<T>::size()const {
 template <typename T>
 std::size_t vector<T>::capacity()const {
     return m_cap;
-}
-
-template <typename T>
-vector<T>::vector(const vector& other) : m_ptr(new T[other.m_cap]), m_size(other.m_size), m_cap(other.m_cap) {
-    for (std::size_t i = 0; i < m_size; ++i) {
-        m_ptr[i] = other.m_ptr[i];
-    }
 }
