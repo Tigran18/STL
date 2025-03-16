@@ -9,10 +9,35 @@ namespace my{
             node* next;
             node(T value);
         };
-        node* head;
-        std::size_t size;
+        node* m_head;
+        std::size_t m_size;
 
         public:
+        
+        forward_list();
+
+        forward_list(std::initializer_list<T> init);
+
+        forward_list(const forward_list& other);
+        
+        forward_list(forward_list&& other) noexcept;
+
+        forward_list& operator=(const forward_list& other);
+
+        forward_list& operator=(forward_list&& other)noexcept;
+        
+        ~forward_list();
+
+        void clear();
+
+        void delete_at(const std::size_t k);
+
+        std::size_t get_size() const;
+
+        void insert_back(T value);
+
+        T& operator[](const std::size_t k);
+
         class iterator{
             private:
             node* current;
@@ -32,29 +57,8 @@ namespace my{
 
         const iterator end() const;
 
-        forward_list();
+        void insert_at(const iterator& arg, T value);
 
-        forward_list(T value);
-
-        forward_list(std::initializer_list<T> init);
-
-        forward_list(const forward_list& other);
-        
-        forward_list(forward_list&& other) noexcept;
-        
-        ~forward_list();
-
-        void clear();
-
-        void delete_at(const std::size_t k);
-
-        std::size_t get_size() const;
-
-        void insert_back(T value);
-
-        T& operator[](const std::size_t k);
-
-        void insert_at(const iterator arg, T value);
     };
 }
 

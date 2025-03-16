@@ -6,12 +6,10 @@ template <typename T>
 list<T>::node::node(T value):data(std::move(value)), next(nullptr), prev(nullptr){}
 
 template <typename T>
-list<T>::list():head(nullptr), tail(nullptr), size_l(0){
-
-}
+list<T>::list():head(nullptr), tail(nullptr), size_l(0){}
 
 template <typename T>
-list<T>::list(std::initializer_list<T> init):head(nullptr), tail(nullptr), size_l(0){
+list<T>::list(std::initializer_list<T> init):list(){
     for(const auto& el : init){
         insert_back(el);
     }
@@ -24,12 +22,36 @@ list<T>::list(const list& other):head(nullptr), tail(nullptr), size_l(0){
     }
 }
 
-
 template <typename T>
 list<T>::list(list&& other)noexcept:head(other.head), tail(other.tail), size_l(other.size_l){
     other.head=nullptr;
     other.tail=nullptr;
     other.size_l=0;
+}
+
+template <typename T>
+list<T>& list<T>::operator=(const list& other){
+    if(this!=&other){
+        clear();
+        for(auto it=other.begin(); it!=other.end(); ++it){
+            insert_back(*it);
+        }
+    }
+    return *this;
+}
+
+template <typename T>
+list<T>& list<T>::operator=(list&& other)noexcept{
+    if(this!=&other){
+        clear();
+        head=other.head;
+        tail=other.tail;
+        size_l=other.size_l;
+        other.head=nullptr;
+        other.tail=nullptr;
+        other.size_l=0;
+    }
+    return *this;
 }
 
 template <typename T>
@@ -72,7 +94,7 @@ T& list<T>::iterator::operator*(){
 }
 
 template <typename T>
-list<T>::iterator& list<T>::iterator::operator++(){
+typename list<T>::iterator& list<T>::iterator::operator++(){
     if(current){
         current=current->next;
     }
@@ -93,7 +115,7 @@ T& list<T>::reverse_iterator::operator*(){
 }
 
 template <typename T>
-list<T>::reverse_iterator& list<T>::reverse_iterator::operator++(){
+typename list<T>::reverse_iterator& list<T>::reverse_iterator::operator++(){
     if(current){
         current=current->prev;
     }
@@ -106,42 +128,42 @@ bool list<T>::reverse_iterator::operator!=(const reverse_iterator& other)const{
 }
 
 template <typename T>
-list<T>::iterator list<T>::begin(){
+typename list<T>::iterator list<T>::begin(){
     return iterator(head);
 }
 
 template <typename T>
-list<T>::iterator list<T>::end(){
+typename list<T>::iterator list<T>::end(){
     return iterator(nullptr);
 }
 
 template <typename T>
-list<T>::iterator list<T>::begin()const{
+typename list<T>::iterator list<T>::begin()const{
     return iterator(head);
 }
 
 template <typename T>
-list<T>::iterator list<T>::end()const{
+typename list<T>::iterator list<T>::end()const{
     return iterator(nullptr);
 }
 
 template <typename T>
-list<T>::reverse_iterator list<T>::rbegin(){
+typename list<T>::reverse_iterator list<T>::rbegin(){
     return reverse_iterator(tail);
 }
 
 template <typename T>
-list<T>::reverse_iterator list<T>::rend(){
+typename list<T>::reverse_iterator list<T>::rend(){
     return reverse_iterator(nullptr);
 }
 
 template <typename T>
-list<T>::reverse_iterator list<T>::rbegin()const{
+typename list<T>::reverse_iterator list<T>::rbegin()const{
     return reverse_iterator(tail);
 }
 
 template <typename T>
-list<T>::reverse_iterator list<T>::rend()const{
+typename list<T>::reverse_iterator list<T>::rend()const{
     return reverse_iterator(nullptr);
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <utility>
 #include <memory>
-#include <iterator>
+
 namespace my{
     template <typename T>
     class list{
@@ -18,16 +18,24 @@ namespace my{
         public:
 
         list();
-        list(std::initializer_list<T> init);
-        void insert_back(const T& value);
-        ~list();
-        void clear();
 
-        std::size_t size()const;
+        list(std::initializer_list<T> init);
 
         list(const list& other);
 
         list(list&& other)noexcept;
+
+        list& operator=(const list& other);
+
+        list& operator=(list&& other)noexcept;
+        
+        void insert_back(const T& value);
+
+        ~list();
+        
+        void clear();
+
+        std::size_t size()const;
 
         class iterator{
             private:

@@ -4,6 +4,8 @@ default constuctor
 constuctor with initalizer list
 copy constructor
 move constructor
+copy assignment constructor
+move assignment constructor
 destructor
 clear() method
 operator[] for getting an elemnt of a class

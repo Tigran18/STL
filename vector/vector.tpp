@@ -62,6 +62,7 @@ vector<T>& vector<T>::operator=(vector&& other) noexcept {
         other.m_ptr = nullptr;
         other.m_size = 0;
         other.m_cap = 0;
+
     }
     return *this;
 }

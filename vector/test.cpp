@@ -10,7 +10,8 @@ int main(){
         std::cout<<integer_vec[i]<<"   ";
     }
     std::cout<<"size is: "<<integer_vec.size()<<", capacity is: "<<integer_vec.capacity()<<std::endl;
-    my::vector<int> new_vector=std::move(integer_vec);
+    my::vector<int> new_vector;
+    new_vector=std::move(integer_vec);
     std::cout<<"new_vector elements are: ";
     for(std::size_t i=0; i<new_vector.size(); i++){
         std::cout<<new_vector[i]<<"   ";
