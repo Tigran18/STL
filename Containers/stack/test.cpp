@@ -5,7 +5,7 @@
 int main(){
     my::stack<int> st1={5, 7, 9};
     std::cout<<"Testing push_back method for my::stack: adding 10\n";
-    st1.push_back(10);
+    st1.push(10);
     if(st1.top()==10){
         std::cout<<"The last element is 10\n";
     }
