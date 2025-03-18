@@ -1,6 +1,6 @@
 #include <iostream>
 #include <chrono>
-#include "list.h"
+#include "list.hpp"
 
 int main(){
     std::cout<<"Creating integer list and testing. "<<std::endl;
