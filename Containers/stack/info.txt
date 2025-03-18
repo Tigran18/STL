@@ -1,0 +1,13 @@
+In this txt file are shown what methods my stack container provide
+
+constructor
+copy constructor
+move constructor
+copy assignment constructor
+move assignment constructor
+
+push
+pop
+top
+size
+empty-return boolean which shows if the stack is empty
