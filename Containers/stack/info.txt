@@ -7,7 +7,7 @@ copy assignment constructor
 move assignment constructor
 
 push
-pop
-top
-size
+pop-removes the las element
+top-returns the las element of the stack
+size-returns the size of the stack
 empty-return boolean which shows if the stack is empty
