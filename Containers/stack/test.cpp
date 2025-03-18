@@ -24,5 +24,24 @@ int main(){
     catch(std::exception& ex){
         std::cout<<ex.what()<<std::endl;
     }
+    my::stack<int> st3(std::move(st2));
+    
+    try{
+        std::cout<<"Printing the elements of st2 after std::move(): \n";
+        std::cout<<st2.top()<<std::endl;
+    }
+    catch(std::exception& ex){
+        std::cout<<ex.what()<<std::endl;
+    }
+    try{
+        std::cout<<"Printing the elements of st3: \n";
+        std::cout<<st3.top()<<std::endl;
+        std::cout<<st3.top()<<std::endl;
+        std::cout<<st3.top()<<std::endl;
+        std::cout<<st3.top()<<std::endl;
+    }
+    catch(std::exception& ex){
+        std::cout<<ex.what()<<std::endl;
+    }
     return 0;
 }

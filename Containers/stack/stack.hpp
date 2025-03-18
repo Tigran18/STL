@@ -22,7 +22,13 @@ namespace my{
         }
 
         stack(const stack& other):m_stack(other.m_stack), m_size(other.m_size){
-            
+        }
+
+        stack(stack&& other)noexcept:m_stack(other.m_stack), m_size(other.m_size){
+            while(other.m_stack.size()!=0){
+                other.top();
+            }
+            other.m_size=0;
         }
 
         void push_back(T value){
