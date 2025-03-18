@@ -21,6 +21,10 @@ namespace my{
             }
         }
 
+        stack(const stack& other):m_stack(other.m_stack), m_size(other.m_size){
+            
+        }
+
         void push_back(T value){
             m_stack.push_back(value);
             ++m_size;
