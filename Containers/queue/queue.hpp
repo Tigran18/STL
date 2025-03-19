@@ -1,10 +1,10 @@
 #pragma once
 #include <memory>
 #include <utility>
-#include <initalizer_list>
 #include <vector>
 
 namespace my{
+	template <typename T>
 	class queue{
 	private:
 		std::vector<T> m_queue={};
@@ -13,7 +13,7 @@ namespace my{
 
 		queue();
 
-		queue(std::initializer_list<std> init);
+		queue(std::initializer_list<T> init);
 
 		std::size_t size();
 
@@ -25,9 +25,11 @@ namespace my{
 
 		void clear();
 
-		T& front();
+		T& front()const;
 
-		T& back();
+		T& back()const;
 
 	};
 }
+
+#include "queue.tpp"
