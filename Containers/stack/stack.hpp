@@ -15,7 +15,7 @@ namespace my {
 
         stack(std::initializer_list<T> init);
 
-        stack(const stack& other) = default;
+        stack(const stack& other);
 
         stack(stack&& other) noexcept;
 

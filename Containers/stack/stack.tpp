@@ -9,6 +9,9 @@ template <typename T>
 stack<T>::stack(std::initializer_list<T> init) : m_stack(init), m_size(init.size()) {}
 
 template <typename T>
+stack<T>::stack(const stack& other) = default;
+
+template <typename T>
 stack<T>::stack(stack&& other) noexcept : m_stack(std::move(other.m_stack)), m_size(other.m_size) {
     other.m_size = 0;
 }

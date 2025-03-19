@@ -17,9 +17,13 @@ int main(){
     try{
         std::cout<<"Printing the elements of st1: \n";
         std::cout<<st1.top()<<std::endl;
+        st1.pop();
         std::cout<<st1.top()<<std::endl;
+        st1.pop();
         std::cout<<st1.top()<<std::endl;
+        st1.pop();
         std::cout<<st1.top()<<std::endl;
+        st1.pop();
     }
     catch(std::exception& ex){
         std::cout<<ex.what()<<std::endl;
@@ -29,6 +33,7 @@ int main(){
     try{
         std::cout<<"Printing the elements of st2 after std::move(): \n";
         std::cout<<st2.top()<<std::endl;
+        st2.pop();
     }
     catch(std::exception& ex){
         std::cout<<ex.what()<<std::endl;
@@ -36,8 +41,11 @@ int main(){
     try{
         std::cout<<"Printing the elements of st3: \n";
         std::cout<<st3.top()<<std::endl;
+        st3.pop();
         std::cout<<st3.top()<<std::endl;
+        st3.pop();
         std::cout<<st3.top()<<std::endl;
+        st3.pop();
         std::cout<<st3.top()<<std::endl;
     }
     catch(std::exception& ex){
