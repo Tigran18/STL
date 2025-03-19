@@ -14,6 +14,14 @@ queue<T>::queue(std::initializer_list<T> init):queue(){
 }
 
 template <typename T>
+queue<T>::queue(const queue& other)=default;
+
+template <typename T>
+queue<T>::queue(queue&& other)noexcept: m_queue(std::move(other.m_queue)), m_size(other.m_size){
+    other.m_size=0:
+}
+
+template <typename T>
 std::size_t queue<T>::size(){
     return m_size;
 }

@@ -15,6 +15,14 @@ namespace my{
 
 		queue(std::initializer_list<T> init);
 
+		queue(const queue& other);
+
+		queue(queue&& other)noexcept;
+
+		queue& operator=(const queue& other);
+
+		queue& operator=(queue&& other);
+
 		std::size_t size();
 
 		bool empty();

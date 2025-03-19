@@ -12,7 +12,7 @@ int main(){
     else{
         std::cout<<"The last element isn't 10\n";
     }
-    my::stack<int> st2(st1);
+    my::stack<int> st2=st1;
     std::cout<<"Top of st2 is: "<<st2.top()<<std::endl;
     try{
         std::cout<<"Printing the elements of st1: \n";
@@ -28,8 +28,22 @@ int main(){
     catch(std::exception& ex){
         std::cout<<ex.what()<<std::endl;
     }
-    my::stack<int> st3(std::move(st2));
-    
+    try{
+        std::cout<<"Printing the elements of st2 after copy: \n";
+        std::cout<<st2.top()<<std::endl;
+        //st2.pop();
+        std::cout<<st2.top()<<std::endl;
+        //st2.pop();
+        std::cout<<st2.top()<<std::endl;
+        //st2.pop();
+        std::cout<<st2.top()<<std::endl;
+        //st2.pop();
+    }
+    catch(std::exception& ex){
+        std::cout<<ex.what()<<std::endl;
+    }
+    my::stack<int> st3;
+    st3=std::move(st2);
     try{
         std::cout<<"Printing the elements of st2 after std::move(): \n";
         std::cout<<st2.top()<<std::endl;
@@ -47,6 +61,7 @@ int main(){
         std::cout<<st3.top()<<std::endl;
         st3.pop();
         std::cout<<st3.top()<<std::endl;
+        st3.pop();
     }
     catch(std::exception& ex){
         std::cout<<ex.what()<<std::endl;
