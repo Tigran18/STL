@@ -28,6 +28,38 @@ namespace my{
                 }
             }
 
+            string(const string& other)=default;
+
+            string(string&& other)noexcept:m_ptr(std::move(other.m_ptr)), m_size(std::move(other.m_size)), m_cap(std::move(other.m_cap)){
+                other.m_ptr=nullptr;
+                other.m_size=0;
+                other.m_cap=0;
+            }
+
+            string& operator=(const string& other){
+                if(this!=&other){
+                    delete[] m_ptr;
+                    m_ptr=other.m_ptr;
+                    m_size=other.m_size;    
+                    m_cap=other.m_cap;
+                }
+                return *this;
+            }
+
+
+            string& operator=(string&& other)noexcept{
+                if(this!=&other){
+                    delete[] m_ptr;
+                    m_ptr=other.m_ptr;
+                    m_size=other.m_size;
+                    m_cap=other.m_cap;
+                    other.m_ptr=nullptr;
+                    other.m_size=0;
+                    other.m_cap=0;
+                }
+                return *this;
+            }
+              
             void push_back(char c){
                 if(m_size==m_cap){
                     reallocate(m_cap==0?1:m_cap*2);
