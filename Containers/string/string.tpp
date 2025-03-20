@@ -14,9 +14,9 @@ void string::reallocate(std::size_t new_cap){
 
 string::string()=default;
 
-string::string(std::initializer_list<char> init):string(){
-    for(auto& el : init){
-        push_back(el);
+string::string(const char* init):string(){
+    while(init!=nullptr){
+        push_back(*init++);
     }
 }
 

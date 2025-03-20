@@ -3,6 +3,8 @@
 #include <utility>
 
 namespace my{
+    std::ostream& operator<<(std::ostream& os, const string& p_char);
+
     class string{
         private:
             char* m_ptr=nullptr;
@@ -12,7 +14,7 @@ namespace my{
         public:
             string();
 
-            string(std::initializer_list<char> init);
+            string(const char* init);
 
             string(const string& other);
 
@@ -20,10 +22,14 @@ namespace my{
 
             string& operator=(const string& other);
 
-
             string& operator=(string&& other)noexcept;
               
             void push_back(char c);
+
+            friend std::ostream& operator<<(std::ostream& os, const char* p_char){
+                os<<p_char;
+                return os;
+            }
     };
 }
 
