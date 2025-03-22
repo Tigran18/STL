@@ -26,12 +26,17 @@ namespace my {
 
         void push_back(const char c);
 
-        friend std::ostream& operator<<(std::ostream& os, const string& str) {
-            return os << str.m_ptr;
-        }
+        friend std::ostream& operator<<(std::ostream& os, const string& str);
+
+        std::size_t size()const;
 
         ~string();
     };
+
+    std::ostream& operator<<(std::ostream& os, const string& str) {
+        os << str.m_ptr;
+        return os;
+    }
 }
 
 #include "string.tpp"

@@ -26,7 +26,7 @@ string::string(const string& other) {
     std::memcpy(m_ptr, other.m_ptr, m_size + 1);
 }
 
-string::string(string&& other) noexcept : m_ptr(other.m_ptr), m_size(other.m_size), m_cap(other.m_cap) {
+string::string(string&& other) noexcept : m_ptr(std::move(other.m_ptr)), m_size(other.m_size), m_cap(other.m_cap) {
     other.m_ptr = nullptr;
     other.m_size = 0;
     other.m_cap = 0;
@@ -43,15 +43,20 @@ string& string::operator=(const string& other) {
     return *this;
 }
 
-string& string::operator=(string&& other)noexcept{
-    if(this!=&other){
+string& string::operator=(string&& other) noexcept {
+    if (this != &other) {
+        // Free the existing resources
         delete[] m_ptr;
-        m_ptr=other.m_ptr;
-        m_size=other.m_size;
-        m_cap=other.m_cap;
-        other.m_ptr=nullptr;
-        other.m_size=0;
-        other.m_cap=0;
+
+        // Steal the resources from 'other'
+        m_ptr = other.m_ptr;
+        m_size = other.m_size;
+        m_cap = other.m_cap;
+
+        // Leave 'other' in a valid but unspecified state
+        other.m_ptr = nullptr;
+        other.m_size = 0;
+        other.m_cap = 0;
     }
     return *this;
 }
@@ -62,6 +67,10 @@ void string::push_back(const char c){
     }
     m_ptr[m_size++]=c;
     m_ptr[m_size]='\0';
+}
+
+std::size_t string::size()const{
+    return m_size;
 }
 
 string::~string() {
