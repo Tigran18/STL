@@ -1,4 +1,5 @@
 #include "string.hpp"
+
 using namespace my;
 
 void string::reallocate(std::size_t new_cap) {
@@ -45,15 +46,11 @@ string& string::operator=(const string& other) {
 
 string& string::operator=(string&& other) noexcept {
     if (this != &other) {
-        // Free the existing resources
         delete[] m_ptr;
-
-        // Steal the resources from 'other'
         m_ptr = other.m_ptr;
         m_size = other.m_size;
         m_cap = other.m_cap;
 
-        // Leave 'other' in a valid but unspecified state
         other.m_ptr = nullptr;
         other.m_size = 0;
         other.m_cap = 0;
@@ -62,7 +59,7 @@ string& string::operator=(string&& other) noexcept {
 }
 
 void string::push_back(const char c){
-    if(m_size==m_cap){
+    if(m_size>=m_cap){
         reallocate(m_cap==0?1:2*m_cap);
     }
     m_ptr[m_size++]=c;

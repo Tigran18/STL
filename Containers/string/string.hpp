@@ -3,6 +3,7 @@
 #include <cstring> 
 
 namespace my {
+
     class string {
     private:
         char* m_ptr = nullptr;
@@ -28,6 +29,8 @@ namespace my {
 
         friend std::ostream& operator<<(std::ostream& os, const string& str);
 
+        friend string operator+(const string& lhs, const string& rhs);
+
         std::size_t size()const;
 
         ~string();
@@ -36,6 +39,21 @@ namespace my {
     std::ostream& operator<<(std::ostream& os, const string& str) {
         os << str.m_ptr;
         return os;
+    }
+
+    string operator+(const string& lhs, const string& rhs) {
+        std::size_t new_size = lhs.m_size + rhs.m_size;
+        string result;
+        
+        result.m_cap = new_size + 1;
+        result.m_size = new_size;
+        result.m_ptr = new char[result.m_cap];
+
+        std::memcpy(result.m_ptr, lhs.m_ptr, lhs.m_size);
+
+        std::memcpy(result.m_ptr + lhs.m_size, rhs.m_ptr, rhs.m_size + 1); 
+
+        return result;
     }
 }
 
