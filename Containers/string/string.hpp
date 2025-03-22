@@ -1,35 +1,36 @@
 #pragma once
-#include <memory>
-#include <utility>
+#include <iostream>
+#include <cstring> 
 
-namespace my{
-    std::ostream& operator<<(std::ostream& os, const string& p_char);
+namespace my {
+    class string {
+    private:
+        char* m_ptr = nullptr;
+        std::size_t m_size = 0;
+        std::size_t m_cap = 0;
 
-    class string{
-        private:
-            char* m_ptr=nullptr;
-            std::size_t m_size{};
-            std::size_t m_cap{};
-            void reallocate(std::size_t new_cap);
-        public:
-            string();
+        void reallocate(std::size_t new_cap);
 
-            string(const char* init);
+    public:
+        string();
 
-            string(const string& other);
+        string(const char* init);
 
-            string(string&& other)noexcept;
+        string(const string& other);
 
-            string& operator=(const string& other);
+        string(string&& other) noexcept;
 
-            string& operator=(string&& other)noexcept;
-              
-            void push_back(char c);
+        string& operator=(const string& other);
 
-            friend std::ostream& operator<<(std::ostream& os, const char* p_char){
-                os<<p_char;
-                return os;
-            }
+        string& operator=(string&& other) noexcept;
+
+        void push_back(const char c);
+
+        friend std::ostream& operator<<(std::ostream& os, const string& str) {
+            return os << str.m_ptr;
+        }
+
+        ~string();
     };
 }
 
