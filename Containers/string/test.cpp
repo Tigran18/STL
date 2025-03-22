@@ -10,7 +10,7 @@ int main(){
     std::cout<<str2.size()<<std::endl;
     //std::cout<<str1;   //avoid printing the moved object, UB
     my::string str3=str2;
-    std::cout<<str3+str2<<std::endl;
+    std::cout<<str3+" "+str2<<std::endl;
     std::cout<<str3<<std::endl;
     return 0;
 }
