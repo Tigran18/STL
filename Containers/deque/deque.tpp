@@ -23,6 +23,7 @@ deque<T>::deque(const deque& other)=default;
 template <typename T>
 deque<T>::deque(deque&& other)noexcept{
     m_vec=std::move(other.m_vec);
+    other.m_vec.clear();
 }
 
 template <typename T>
@@ -37,7 +38,9 @@ template <typename T>
 deque<T>& deque<T>::operator=(deque&& other)noexcept{
     if(this!=&other){
         m_vec=std::move(other.m_vec);
+        other.m_vec.clear();
     }
+    return *this;
 }
 
 template <typename T>
@@ -46,8 +49,8 @@ void deque<T>::push_back(T arg){
 }
 
 template <typename T>
-void deque<T>::push_front(T arg){
-    m_vec.push_front(arg);
+void deque<T>::push_front(T arg) {
+    m_vec.insert(m_vec.begin(), arg);
 }
 
 template <typename T>
@@ -74,4 +77,30 @@ T deque<T>::back()const{
         throw std::out_of_range("No element to print.");
     }
     return m_vec.back();
+}
+
+template <typename T>
+T& deque<T>::at(const std::size_t& k){
+    if(k>=m_vec.size()){
+        throw std::out_of_range("Out of bounds.");
+    }
+    return m_vec.at(k);
+}
+
+template <typename T>
+const T& deque<T>::at(const std::size_t& k)const{
+    if(k>=m_vec.size()){
+        throw std::out_of_range("Out of bounds.");
+    }
+    return m_vec.at(k);
+}
+
+template <typename T>
+const T& deque<T>::operator[](const std::size_t k)const{
+    return m_vec[k];
+}
+
+template <typename T>
+T& deque<T>::operator[](const std::size_t k){
+    return m_vec[k];
 }

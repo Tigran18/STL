@@ -33,6 +33,14 @@ namespace my{
 
             T back()const;
 
+            T& at(const std::size_t& k);
+
+            const T& at(const std::size_t& k)const;
+
+            const T& operator[](const std::size_t k)const;
+
+            T& operator[](const std::size_t k);
+
             std::size_t size() const;
     };
 }
