@@ -8,8 +8,6 @@ namespace my {
     class stack {
     private:
         std::vector<T> m_stack;
-        std::size_t m_size = 0;
-
     public:
         stack();
 

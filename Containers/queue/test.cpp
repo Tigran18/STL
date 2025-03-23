@@ -7,16 +7,16 @@ int main(){
 	q2=std::move(q1);
 	std::cout<<"Size of q1 after moving: ";
 	std::cout<<q1.size()<<std::endl;
-	// try{
-	// 	do{
-	// 		std::cout<<q1.front()<<"  ";
-	// 		q1.pop();
-	// 	}while(q1.empty());
-	// 	std::cout<<std::endl;
-	// }
-	// catch(const std::exception& ex){
-	// 	std::cout<<ex.what()<<std::endl;
-	// }
+	try{
+		do{
+			std::cout<<q1.front()<<"  ";
+			q1.pop();
+		}while(q1.empty());
+		std::cout<<std::endl;
+	}
+	catch(const std::exception& ex){
+		std::cout<<ex.what()<<std::endl;
+	}
 	std::cout<<"Printing the elements of q2: ";
 	do{
 		std::cout<<q2.front()<<"  ";

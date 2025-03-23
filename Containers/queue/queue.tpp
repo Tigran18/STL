@@ -18,7 +18,6 @@ queue<T>::queue(const queue& other)=default;
 template <typename T>
 queue<T>::queue(queue&& other)noexcept{
     m_queue=std::move(other.m_queue);
-    other.m_queue.clear();
 }
 
 template <typename T>
@@ -33,7 +32,6 @@ template <typename T>
 queue<T>& queue<T>::operator=(queue&& other){
     if(this!=&other){
         m_queue=std::move(other.m_queue);
-        //other.m_queue.clear();
     }
     return *this;
 }
@@ -64,11 +62,13 @@ void queue<T>::clear(){
     m_queue.clear();
 }
 
+template <typename T>
 T& queue<T>::front() {
     if (m_queue.empty()) throw std::out_of_range("Queue is empty");
     return m_queue.front();
 }
 
+template <typename T>
 T& queue<T>::back() {
     if (m_queue.empty()) throw std::out_of_range("Queue is empty");
     return m_queue.back();

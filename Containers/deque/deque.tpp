@@ -23,7 +23,6 @@ deque<T>::deque(const deque& other)=default;
 template <typename T>
 deque<T>::deque(deque&& other)noexcept{
     m_vec=std::move(other.m_vec);
-    other.m_vec.clear();
 }
 
 template <typename T>
@@ -38,7 +37,6 @@ template <typename T>
 deque<T>& deque<T>::operator=(deque&& other)noexcept{
     if(this!=&other){
         m_vec=std::move(other.m_vec);
-        other.m_vec.clear();
     }
     return *this;
 }

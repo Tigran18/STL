@@ -4,7 +4,8 @@
 int main(){
     my::deque<int> deq1{4, 7, 8, 9};
     std::cout<<"Moving deq1 to deq2: "<<std::endl;
-    my::deque<int> deq2(std::move(deq1));
+    my::deque<int> deq2;
+    deq2=std::move(deq1);
     std::cout<<"Checking the size of deq1: "<<deq1.size()<<std::endl;
     try{
         std::cout<<"printing the first element of deq1: ";
