@@ -10,33 +10,31 @@ namespace my{
             std::vector<T> m_vec={};
             std::size_t m_size=0;
         public:
-            deque():m_vec({}), m_size(0){};
+            deque();
 
-            deque(std::initializer_list<T> init):deque(){
-                for(auto arg : init){
-                    push_back(arg);
-                }
-            }
+            deque(std::initializer_list<T> init);
 
-            deque(const deque& other){}
+            deque(const deque& other);
 
-            deque(deque&& other)noexcept{}
+            deque(deque&& other)noexcept;
 
-            deque& operator=(const deque& other){}
+            deque& operator=(const deque& other);
 
-            deque& operator=(deque&& other)noexcept{}
+            deque& operator=(deque&& other)noexcept;
 
             void push_back(){}
 
             void push_front(){}
 
-            void pop_back(){}
+            void pop_back(){
+            }
 
-            void pop_front(){}
+            void pop_front(){
+            }
         
-            void front(){}
+            T front()const;
 
-            void back(){}
+            T back()const;
 
             std::size_t size() const;
     };
