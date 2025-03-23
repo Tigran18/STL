@@ -8,7 +8,6 @@ namespace my{
     class deque{
         private:
             std::vector<T> m_vec={};
-            std::size_t m_size=0;
         public:
             deque();
 
@@ -22,15 +21,13 @@ namespace my{
 
             deque& operator=(deque&& other)noexcept;
 
-            void push_back(){}
+            void push_back(T arg);
 
-            void push_front(){}
+            void push_front(T arg);
 
-            void pop_back(){
-            }
+            void pop_back();
 
-            void pop_front(){
-            }
+            void pop_front();
         
             T front()const;
 
