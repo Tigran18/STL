@@ -8,7 +8,6 @@ namespace my{
 	class queue{
 	private:
 		std::vector<T> m_queue={};
-		std::size_t m_size=0;
 	public:
 
 		queue();
@@ -33,10 +32,13 @@ namespace my{
 
 		void clear();
 
-		T& front()const;
+		T& front();
 
-		T& back()const;
+		const T& front()const;
 
+		T& back();
+
+		const T& back()const;
 	};
 }
 
