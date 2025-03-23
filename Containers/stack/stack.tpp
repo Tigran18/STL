@@ -62,3 +62,4 @@ template <typename T>
 bool stack<T>::empty() const {
     return m_stack.size()==0;
 }
+
