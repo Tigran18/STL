@@ -54,3 +54,34 @@ U& map<T, U>::operator[](const T& key){
     m_pairs.push_back({key, U{}});
     return m_pairs.back().second;
 }
+
+template <typename T, typename U>
+const U& map<T, U>::operator[](const T& key)const {
+    for(auto& pair : m_pairs){
+        if(pair.first==key){
+            return pair.second;
+        }
+    }
+    m_pairs.push_back({key, U{}});
+    return m_pairs.back().second;
+}
+
+template <typename T, typename U>
+auto map<T, U>::begin() { 
+    return m_pairs.begin(); 
+}
+
+template <typename T, typename U>
+auto map<T, U>::end() { 
+    return m_pairs.end(); 
+}
+
+template <typename T, typename U>
+auto map<T, U>::begin() const { 
+    return m_pairs.begin(); 
+}
+
+template <typename T, typename U>
+auto map<T, U>::end() const { 
+    return m_pairs.end(); 
+}

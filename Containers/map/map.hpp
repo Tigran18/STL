@@ -24,6 +24,16 @@ namespace my{
         map& operator=(map&& other)noexcept;
 
         U& operator[](const T& key);
+
+        const U& operator[](const T& key) const;
+
+        auto begin();
+        
+        auto end();
+        
+        auto begin() const;
+
+        auto end() const;
     };
 }
 
