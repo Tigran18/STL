@@ -10,6 +10,16 @@ map<T, U>::map(std::initializer_list<std::pair<T, U>> init) {
     for (auto& el : init) {
         m_pairs.push_back(el);
     }
+    std::sort(m_pairs.begin(), m_pairs.end());
+}
+
+template <typename T, typename U>
+template <typename Iterator>
+map<T, U>::map(Iterator begin, Iterator end) {
+    for (auto it = begin; it != end; ++it) {
+        m_pairs.push_back(*it);
+    }
+    std::sort(m_pairs.begin(), m_pairs.end());
 }
 
 template <typename T, typename U>
@@ -87,6 +97,26 @@ auto map<T, U>::end() const {
 }
 
 template <typename T, typename U>
+auto map<T, U>::rbegin(){
+    return m_pairs.rbegin();
+}
+
+template <typename T, typename U>
+auto map<T, U>::rend(){
+    return m_pairs.rend();
+}
+
+template <typename T, typename U>
+auto map<T, U>::rbegin() const{
+    return m_pairs.rbegin();
+}
+
+template <typename T, typename U>
+auto map<T, U>::rend() const{
+    return m_pairs.rend();
+}
+
+template <typename T, typename U>
 U& map<T, U>::at(const T& key){
     for(auto& pair : m_pairs){
         if(key==pair.first){
@@ -104,4 +134,9 @@ const U& map<T, U>::at(const T& key) const{
         }
     }
     throw std::out_of_range("Out of range");
+}
+
+template <typename T, typename U>
+bool map<T, U>::empty()const{
+    return m_pairs.empty();
 }

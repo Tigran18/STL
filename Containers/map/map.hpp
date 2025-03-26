@@ -2,6 +2,7 @@
 #include <memory>
 #include <utility>
 #include <vector>
+#include <algorithm>
 
 namespace my{
     template <typename T, typename U>
@@ -12,6 +13,9 @@ namespace my{
         map();
 
         map(std::initializer_list<std::pair<T, U>> init);
+
+        template <typename Iterator>
+        map(Iterator begin, Iterator end);
 
         const std::size_t size() const;
 
@@ -38,6 +42,16 @@ namespace my{
         auto begin() const;
 
         auto end() const;
+
+        auto rbegin();
+
+        auto rend();
+
+        auto rbegin() const;
+
+        auto rend() const;
+
+        bool empty()const;
     };
 }
 
