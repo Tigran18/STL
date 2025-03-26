@@ -1,5 +1,5 @@
 #include <iostream>
-#include "forward_list.h"
+#include "forward_list.hpp"
 
 int main(){
     my::forward_list<int> l1={7, 8, 9, 10};
@@ -16,6 +16,10 @@ int main(){
     std::cout<<"\nelements of l1 after copy are: ";
     for(auto it=l1.begin(); it!=l1.end(); ++it){
         std::cout<<*it<<"   ";
+    }
+    std::cout<<"\nChecking iterators begin and end: ";
+    for(auto& el : l2){
+        std::cout<<el<<"  ";
     }
     std::cout<<std::endl;
     return 0;

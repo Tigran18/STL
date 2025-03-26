@@ -10,8 +10,8 @@ int main(){
     my::list<int> l2;
     l2=std::move(l1);
     std::cout<<"\nl2 list elements are: ";
-    for(auto it=l2.begin(); it!=l2.end(); ++it){
-        std::cout<<*it<<"  ";
+    for(auto& el : l2){
+        std::cout<<el<<"  ";
     }
     std::cout<<"\nl1 list elements after move are: ";
     for(auto it=l1.begin(); it!=l1.end(); ++it){

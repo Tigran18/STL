@@ -108,3 +108,23 @@ template <typename T>
 std::size_t vector<T>::capacity()const {
     return m_cap;
 }
+
+template <typename T>
+T* vector<T>::begin(){
+    return m_ptr;
+}
+
+template <typename T>
+T* vector<T>::end(){
+    return m_ptr+m_size;
+}
+
+template <typename T>
+const T* vector<T>::begin()const {
+    return m_ptr;
+}
+
+template <typename T>
+const T* vector<T>::end() const{
+    return m_ptr+m_size;
+}
