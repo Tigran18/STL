@@ -85,3 +85,23 @@ template <typename T, typename U>
 auto map<T, U>::end() const { 
     return m_pairs.end(); 
 }
+
+template <typename T, typename U>
+U& map<T, U>::at(const T& key){
+    for(auto& pair : m_pairs){
+        if(key==pair.first){
+            return pair.second;
+        }
+    }
+    throw std::out_of_range("Out of range");
+}
+
+template <typename T, typename U>
+const U& map<T, U>::at(const T& key) const{
+    for(auto& pair : m_pairs){
+        if(key==pair.first){
+            return pair.second;
+        }
+    }
+    throw std::out_of_range("Out of range");
+}

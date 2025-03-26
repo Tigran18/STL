@@ -27,6 +27,10 @@ namespace my{
 
         const U& operator[](const T& key) const;
 
+        U& at(const T& key);
+
+        const U& at(const T& key) const;
+
         auto begin();
         
         auto end();
