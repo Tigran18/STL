@@ -53,7 +53,11 @@ namespace my{
 
         bool empty()const;
 
-        void insert(T key, U value);
+        void insert(const T key, const U value);
+
+        void erase(const T& key);
+
+        void clear();
     };
 }
 

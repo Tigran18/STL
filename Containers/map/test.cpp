@@ -21,10 +21,25 @@ int main(){
     for(auto it=m2.rbegin(); it!=m2.rend(); ++it){
         std::cout<<"Key="<<it->first<<", Value="<<it->second<<std::endl;
     }
-    std::cout<<"Inserting key 5 value 145.12"<<std::endl;
+    std::cout<<"Inserting key 5 value 145.12 in m2"<<std::endl;
     m2.insert(5, 145.12);
     for(auto it=m2.begin(); it!=m2.end(); ++it){
         std::cout<<"Key="<<it->first<<", Value="<<it->second<<std::endl;
+    }
+    std::cout<<"Clearing the data in m2: \n";
+    m2.clear();
+    std::cout<<"Inserting new values: \n";
+    double k=1.5;
+    for(std::size_t i=0; i<5; i++){
+        m2.insert(i, k=k*k);
+    }
+    for(auto& pair : m2){
+        std::cout<<"Key="<<pair.first<<", Value="<<pair.second<<std::endl;
+    }
+    std::cout<<"Erasing the 4th element: \n";
+    m2.erase(2);
+    for(auto& pair : m2){
+        std::cout<<"Key="<<pair.first<<", Value="<<pair.second<<std::endl;
     }
     return 0;
 }

@@ -142,8 +142,23 @@ bool map<T, U>::empty()const{
 }
 
 template <typename T, typename U>
-void map<T, U>::insert(T key, U value){
+void map<T, U>::insert(const T key, const U value){
     std::pair<T, U> el={key, value};
     m_pairs.push_back(el);
     std::sort(m_pairs.begin(), m_pairs.end());
+}
+
+template <typename T, typename U>
+void map<T, U>::erase(const T& key){
+    for (auto it = m_pairs.begin(); it != m_pairs.end(); ++it) {
+        if (it->first == key) {
+            m_pairs.erase(it);
+            return;
+        }
+    }
+}
+
+template <typename T, typename U>
+void map<T, U>::clear(){
+    m_pairs.erase(m_pairs.begin(), m_pairs.end());
 }
