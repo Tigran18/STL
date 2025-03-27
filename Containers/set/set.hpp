@@ -29,6 +29,26 @@ namespace my{
                 std::sort(m_set.begin(), m_set.end());
             }
 
+            set(const set& other)=default;
+
+            set(set&& other)noexcept{
+                m_set=std::move(other.m_set);
+            }
+
+            set& operator=(const set& other){
+                if(this!=&other){
+                    m_set=other.m_set;
+                }
+                return *this;
+            }
+
+            set& operator=(set&& other)noexcept{
+                if(this!=&other){
+                    m_set=std::move(other.m_set);
+                }
+                return *this;
+            }
+
             auto begin(){
                 return m_set.begin();
             }
