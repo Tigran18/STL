@@ -52,6 +52,8 @@ namespace my{
         auto rend() const;
 
         bool empty()const;
+
+        void insert(T key, U value);
     };
 }
 

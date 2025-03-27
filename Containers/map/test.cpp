@@ -21,5 +21,10 @@ int main(){
     for(auto it=m2.rbegin(); it!=m2.rend(); ++it){
         std::cout<<"Key="<<it->first<<", Value="<<it->second<<std::endl;
     }
+    std::cout<<"Inserting key 5 value 145.12"<<std::endl;
+    m2.insert(5, 145.12);
+    for(auto it=m2.begin(); it!=m2.end(); ++it){
+        std::cout<<"Key="<<it->first<<", Value="<<it->second<<std::endl;
+    }
     return 0;
 }

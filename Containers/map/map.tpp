@@ -140,3 +140,10 @@ template <typename T, typename U>
 bool map<T, U>::empty()const{
     return m_pairs.empty();
 }
+
+template <typename T, typename U>
+void map<T, U>::insert(T key, U value){
+    std::pair<T, U> el={key, value};
+    m_pairs.push_back(el);
+    std::sort(m_pairs.begin(), m_pairs.end());
+}
