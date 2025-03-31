@@ -1,3 +1,4 @@
+#pragma once
 #include <memory>
 #include <vector>
 #include <utility>
@@ -9,6 +10,26 @@ namespace my{
         private:
             std::vector<T> m_set;
         public:
+            set();
+
+            set(std::initializer_list<T> init);
+            
+            set(const set& other);
+
+            set(set&& other)noexcept;
+
+            set& operator=(const set& other);
+
+            set& operator=(set&& other)noexcept;
+
+            auto begin();
+            
+            auto begin()const;
+            
+            auto end();
+            
+            auto end()const;
+
             friend bool check(const set<T>& obj, T el){
                 for(const auto& item : obj.m_set){
                     if(item == el){
@@ -17,53 +38,8 @@ namespace my{
                 }
                 return true;
             }
-
-            set() = default;
-
-            set(std::initializer_list<T> init){
-                for(auto& el : init){
-                    if(check(*this, el)){
-                        m_set.push_back(el);
-                    }
-                }
-                std::sort(m_set.begin(), m_set.end());
-            }
-
-            set(const set& other)=default;
-
-            set(set&& other)noexcept{
-                m_set=std::move(other.m_set);
-            }
-
-            set& operator=(const set& other){
-                if(this!=&other){
-                    m_set=other.m_set;
-                }
-                return *this;
-            }
-
-            set& operator=(set&& other)noexcept{
-                if(this!=&other){
-                    m_set=std::move(other.m_set);
-                }
-                return *this;
-            }
-
-            auto begin(){
-                return m_set.begin();
-            }
             
-            auto begin()const{
-                return m_set.begin();
-            }
-            
-            auto end(){
-                return m_set.end();
-            }
-            
-            auto end()const{
-                return m_set.end();
-            }
     };
 }
 
+#include "set.tpp"
