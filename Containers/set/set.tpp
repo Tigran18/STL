@@ -58,3 +58,40 @@ template <typename T>
 auto set<T>::end()const{
     return m_set.end();
 }
+
+template <typename T>
+bool set<T>::empty() const{
+    return m_set.empty();
+}
+
+template <typename T>
+auto set<T>::find(const T& data)const{
+    for(auto it=m_set.begin(); it!=m_set.end(); ++it){
+        if(data==*it){
+            return it;
+        }
+    }
+    return m_set.end();
+}
+
+template <typename T>
+std::size_t set<T>::size()const{
+    return m_set.size();
+}
+
+template <typename T>
+void set<T>::insert(const T& data){
+    m_set.push_back(data);
+    std::sort(m_set.begin(), m_set.end());
+}
+
+template <typename T>
+void set<T>::erase(const T& data){
+    std::size_t i=0;
+    for(auto it=m_set.begin(); it!=m_set.end(); ++it){
+        if(*it==data){
+            m_set.erase(m_set.begin()+i);
+        }
+        i++;
+    }
+}
