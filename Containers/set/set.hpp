@@ -40,15 +40,7 @@ namespace my{
 
             void erase(const T& data);
 
-            friend bool check(const set<T>& obj, T el){
-                for(const auto& item : obj.m_set){
-                    if(item == el){
-                        return false;
-                    }
-                }
-                return true;
-            }
-            
+            friend bool check<>(const set<T>& obj, T el);      
     };
 }
 

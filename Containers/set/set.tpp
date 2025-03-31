@@ -6,6 +6,16 @@ template <typename T>
 set<T>::set()=default;
 
 template <typename T>
+bool check(const set<T>& obj, T el){
+    for(const auto& item : obj.m_set){
+        if(item == el){
+            return false;
+        }
+    }
+    return true;
+}
+
+template <typename T>
 set<T>::set(std::initializer_list<T> init){
     for(auto& el : init){
         if(check(*this, el)){
