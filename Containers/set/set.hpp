@@ -8,12 +8,17 @@ namespace my{
     template <typename T>
     class set{
         private:
-            std::vector<T> m_set;
+            T data;
+            set* rightnode;
+            set* leftnode;
         public:
             set();
 
-            set(std::initializer_list<T> init);
+            template <typename ...Args>
+            set(T data, Args ...args);
             
+            set* insert(const T& value);
+
             set(const set& other);
 
             set(set&& other)noexcept;
@@ -36,11 +41,7 @@ namespace my{
 
             std::size_t size()const;
 
-            void insert(const T& data);
-
             void erase(const T& data);
-
-            friend bool check<>(const set<T>& obj, T el);      
     };
 }
 
