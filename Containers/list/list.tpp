@@ -81,7 +81,7 @@ void list<T>::clear(){
         head=head->next;
         delete temp;
     }
-    head=nullptr;
+    head=tail=nullptr;
     size_l=0;
 }
 
