@@ -6,5 +6,6 @@ int main(){
     for(auto& el : s1){
         std::cout<<el<<"  ";
     }
+    std::cout<<std::endl;
     return 0;
 }

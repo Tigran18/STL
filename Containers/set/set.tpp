@@ -3,37 +3,45 @@
 using namespace my;
 
 template <typename T>
-set<T>::set():data(0), rightnode(nullptr), leftnode(nullptr){}
+set<T>::set():root(nullptr), size(0){}
 
 template <typename T>
 template <typename ...Args>
-set<T>::set(T value, Args ...args):data(value), rightnode(nullptr), leftnode(nullptr){
+set<T>::set(T value, Args ...args):set(){
+    insert(value);
     (insert(args), ...);
 }
 
 template <typename T>
-set<T>* set<T>::insert(const T& value){
-    if(value==data){
-        return this;
+typename set<T>::node* set<T>::insert(const T& value) {
+    if (!root) {
+        root = new node(const_cast<T&>(value));
+        ++size;
+        return root;
     }
-    else if(value>data){
-        if(!rightnode){
-            rightnode=new set(value);
-        }
-        else{
-            rightnode->insert(value);
+
+    node* current = root;
+    while (true) {
+        if (value == current->data) {
+            return current;
+        } else if (value < current->data) {
+            if (!current->leftnode) {
+                current->leftnode = new node(const_cast<T&>(value));
+                ++size;
+                return current->leftnode;
+            }
+            current = current->leftnode;
+        } else {
+            if (!current->rightnode) {
+                current->rightnode = new node(const_cast<T&>(value));
+                ++size;
+                return current->rightnode;
+            }
+            current = current->rightnode;
         }
     }
-    else{
-        if(!leftnode){
-            leftnode=new set(value);
-        }
-        else{
-            leftnode->insert(value);
-        }
-    }
-    return this;
 }
+
 
 template <typename T>
 set<T>::set(const set& other)=default;
@@ -55,38 +63,4 @@ set<T>& set<T>::operator=(set&& other)noexcept{
     if(this!=&other){
     }
     return *this;
-}
-
-template <typename T>
-auto set<T>::begin(){
-}
-
-template <typename T>
-auto set<T>::begin()const{
-}
-
-template <typename T>
-auto set<T>::end(){
-}
-
-template <typename T>
-auto set<T>::end()const{
-}
-
-template <typename T>
-bool set<T>::empty() const{
-}
-
-template <typename T>
-auto set<T>::find(const T& data)const{
-    
-}
-
-template <typename T>
-std::size_t set<T>::size()const{
-}
-
-template <typename T>
-void set<T>::erase(const T& data){
-    
 }
