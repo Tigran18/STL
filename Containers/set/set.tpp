@@ -81,14 +81,14 @@ typename set<T>::node* set<T>::insert(const T& value) {
             return current;
         } else if (value < current->data) {
             if (!current->leftnode) {
-                current->leftnode = new node(const_cast<T&>(value));
+                current->leftnode = new node(value);
                 ++size;
                 return current->leftnode;
             }
             current = current->leftnode;
         } else {
             if (!current->rightnode) {
-                current->rightnode = new node(const_cast<T&>(value));
+                current->rightnode = new node(value);
                 ++size;
                 return current->rightnode;
             }
@@ -204,4 +204,15 @@ typename set<T>::node* set<T>::find_min(node* n) {
         n = n->leftnode;
     }
     return n;
+}
+
+template <typename T>
+typename set<T>::iterator set<T>::find(const T& value) const {
+    node* n = root;
+    for(auto it=begin(); it!=end(); ++it){
+        if(*it==value){
+            return it;
+        }
+    }
+    return 0;
 }

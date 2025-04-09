@@ -15,5 +15,7 @@ int main(){
         std::cout<<el<<"  ";
     }
     std::cout<<std::endl;
+    auto it=s2.find(9);
+    std::cout<<"Finding 2: "<<*it<<std::endl;
     return 0;
 }

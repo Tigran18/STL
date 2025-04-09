@@ -63,6 +63,9 @@ namespace my{
             iterator begin() const;
 
             iterator end() const;
+
+            iterator find(const T& value)const;
+
     };
 }
 
