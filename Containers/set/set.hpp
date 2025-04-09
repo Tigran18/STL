@@ -41,6 +41,8 @@ namespace my{
 
             void delete_tree(node* n);
 
+            bool contains(const T& value)const;
+
         class iterator {
             private:
                 std::vector<node*> stack;

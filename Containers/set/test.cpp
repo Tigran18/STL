@@ -15,7 +15,21 @@ int main(){
         std::cout<<el<<"  ";
     }
     std::cout<<std::endl;
-    auto it=s2.find(9);
-    std::cout<<"Finding 2: "<<*it<<std::endl;
+    auto it=s2.find(2);
+    std::cout<<"returning 2: "<<*it<<std::endl;
+    std::cout<<"Finding 9: ";
+    if(s2.contains(9)){
+        std::cout<<"Yes"<<std::endl;
+    }
+    else{
+        std::cout<<"No"<<std::endl;
+    }
+    std::cout<<"Finding 5: ";
+    if(s2.contains(5)){
+        std::cout<<"Yes"<<std::endl;
+    }
+    else{
+        std::cout<<"No"<<std::endl;
+    }
     return 0;
 }

@@ -216,3 +216,13 @@ typename set<T>::iterator set<T>::find(const T& value) const {
     }
     return 0;
 }
+
+template <typename T>
+bool set<T>::contains(const T& value)const{
+    for(auto it=begin(); it!=end(); ++it){
+        if(*it==value){
+            return true;
+        }
+    }
+    return false;
+}
