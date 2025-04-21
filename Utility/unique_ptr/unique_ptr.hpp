@@ -27,6 +27,14 @@ namespace my{
             T& operator*()const{
                 return *ptr;
             }
+
+            T& operator[](std::size_t k)const {
+                return ptr[k];
+            }
+
+            unique_ptr& operator+(const std::size_t& k)const{
+                return ptr+k;
+            }
     };
 }
 
