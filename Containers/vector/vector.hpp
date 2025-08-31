@@ -36,6 +36,8 @@ namespace my {
 
         void push_back(T&& arg);
 
+        void push_back(std::initializer_list<T> args)
+
         T& operator[](const std::size_t& k);
 
         T& operator[](const std::size_t& k) const;

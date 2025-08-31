@@ -15,7 +15,6 @@ void insertion_sort(T& array){
 }
 
 int main(){
-    srand(unsigned(time(0)));
     srand(static_cast<unsigned>(time(0)));
     std::vector<int> vec1;
     int n;

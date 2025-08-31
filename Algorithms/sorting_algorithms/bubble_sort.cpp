@@ -18,7 +18,7 @@ void bubble_sort(std::vector<int>& array){
 }
 
 int main(){
-    srand(time(0));
+    srand(static_cast<unsigned>(time(0)));
     std::vector<int> vec1;
     for(std::size_t i=0; i<20; i++){
         vec1.push_back(rand()%51-25);

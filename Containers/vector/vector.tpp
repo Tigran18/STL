@@ -19,8 +19,10 @@ vector<T>::vector() : m_ptr(nullptr), m_size(0), m_cap(0) {}
 
 template <typename T>
 vector<T>::vector(std::initializer_list<T> args) : vector() {
+    m_ptr=new T[m_cap];
+    std::size_t i=0;
     for (const T& arg : args) {
-        push_back(arg);
+        m_ptr[i++]=arg;
     }
 }
 
@@ -94,6 +96,16 @@ void vector<T>::push_back(T&& arg) {
         reallocate(m_cap == 0 ? 1 : 2 * m_cap);
     }
     m_ptr[m_size++] = std::move(arg);
+}
+
+template <typename T>
+void vector<T>::push_back(std::initializer_list<T> args){
+    if (m_size + args.size() > m_cap) {
+        reallocate(std::max(m_cap * 2, m_size + args.size()));
+    }
+    for (const T& arg : args) {
+        m_ptr[m_size++] = arg;
+    }
 }
 
 template <typename T>
